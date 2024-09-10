@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'iq-soft-icon';
+  src: url("../../assets/fonts/iq_soft_icon.woff") format("woff"),
+  url('../../assets/fonts/iq_soft_icon.ttf') format('truetype'),
+  url('../../assets/fonts/iq_soft_icon.svg') format('svg');
+}
+
+[class^="icon-"], [class*="icon- "] {
+  font-family: "iq-soft-icon" !important;
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-style: normal;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-user:before {
+  content: '\e900';
+}
+
+.icon-logout:before {
+  content: '\e901';
+}
+
+.icon-filter:before {
+  content: '\e90c';
+}
+
+.icon-quick-find:before {
+  content: '\e90b';
+}
+
+.icon-calendar:before {
+  content: '\e909';
+}
+
+.icon-edit:before {
+  content: '\e903';
+}
+
+.icon-arrow:before {
+  content: '\e907';
+}
+
+.icon-visitors:before {
+  content: "\e916";
+}
+.icon-signups:before {
+  content: "\e915";
+}
+.icon-returns:before {
+  content: "\e914";
+}
+
+.icon-bonuses:before {
+  content: "\e90e";
+}
+.icon-cashout:before {
+  content: "\e911";
+}
+.icon-average:before {
+  content: "\e908";
+}
+.icon-maxbet:before {
+  content: "\e912";
+}
+.icon-maxwin:before {
+  content: "\e913";
+}
+.icon-close:before {
+  content: "\e90f";
+}
+.icon-menu:before {
+  content: "\e910";
+}
+.icon-close1:before {
+  content: "\e920";
+  color: #0092d6;
+}
+.icon-info:before {
+  content: "\e921";
+}
+.icon-stat-icon:before {
+  content: "\e922";
+  color: #575450;
+}
+//TODO add icon name from svg file
+

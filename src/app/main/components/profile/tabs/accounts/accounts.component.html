@@ -1,0 +1,34 @@
+
+<div class="container">
+
+  <app-partner-date-filter 
+    [title]="'Users.AccountsHistory'"
+    (toDateChange)="onDateChange($event)" />
+    
+  <div class="grid-content">
+    <ag-grid-angular
+    id="all-providers"
+    #agGrid
+    class="ag-theme-balham"
+    [headerHeight]="33"
+    [rowHeight]="42"
+    [rowData]="rowData"
+    [rowModelType]="rowModelType"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [enableBrowserTooltips]="enableBrowserTooltips"
+    [sideBar]="sideBar"
+    [animateRows]="true"
+    [enableBrowserTooltips]="enableBrowserTooltips"
+    (gridReady)="onGridReady($event)"
+    [ensureDomOrder]="true"
+    [enableCellTextSelection]="true"
+    rowSelection="single">
+  </ag-grid-angular>
+  
+  </div>
+</div>
+
+
+
+

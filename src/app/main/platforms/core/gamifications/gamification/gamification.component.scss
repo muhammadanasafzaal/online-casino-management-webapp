@@ -1,0 +1,33 @@
+@import "mixins.scss";
+@import "variables.scss";
+
+.container {
+  @include container-style;
+
+  .mat-btn {
+    @include mat-btn-style;
+  }  
+
+  .content-action {
+    @include action-style;
+
+    .edit-btn {
+      @include mat-edit-btn-style;
+    }
+  }
+
+  .img {
+    width: 270px;
+    height: 270px;
+  }
+}
+
+.card-content {
+  display: flex;
+  gap: 10px;
+  .mat-mdc-card {
+    max-width: 300px;
+    max-height: 300px;
+    margin-right: 20px;
+  }
+}

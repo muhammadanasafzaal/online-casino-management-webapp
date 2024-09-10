@@ -1,0 +1,55 @@
+@import "mixins";
+
+.container {
+  @include container-style;
+  height: auto;
+  background-color: $content-bg-color;
+
+  .content-action {
+    @include action-style;
+
+    .mat-btn {
+      margin-right: 10px;
+      @include mat-btn-style;
+    }
+
+    .edit-btn {
+      @include mat-edit-btn-style;
+    }
+  }
+}
+
+.grid-content {
+  width: 100%;
+  height: calc(100vh - 555px);
+  padding-top: 12px;
+
+  ::ng-deep {
+    ag-grid-angular {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.mat-cancel-btn {
+  margin-left: 8px;
+  @include mat-cancel-btn-style;
+}
+
+.mat-btn {
+  margin-left: 8px;
+  @include mat-btn-style;
+}
+
+
+.card-content {
+  padding-top: 15px;
+  display: flex;
+  gap: 10px;
+  .mat-mdc-card {
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 20px;
+  }
+}

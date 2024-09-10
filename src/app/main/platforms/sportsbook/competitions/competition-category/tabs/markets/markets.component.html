@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="content-action">
+    <div class="title"><a [routerLink]="['../../all-competitions']">{{'Sport.Competitions' | translate}}</a> / :{{'Sport.Profit' | translate}} / {{name}}</div>
+    <div>{{partnerName}}</div>
+
+    <div class = "bulk-editor-dropdown">
+      <button mat-stroked-button class="mat-bulk-btn"
+              [matMenuTriggerFor]="bulkMenu"
+              #bulkMenuTrigger="matMenuTrigger" (click)="onBulkEditorOpen()">
+        {{'Common.Edit' | translate}}
+      </button>
+      <mat-menu class="bulk-editor-menu" #bulkMenu="matMenu" xPosition="before">
+        <ng-container #bulkEditorRef></ng-container>
+      </mat-menu>
+    </div>
+    <button mat-stroked-button class="mat-btn" (click)="addSettings()">{{'Sport.AddSettings' | translate}}</button>
+    <button mat-stroked-button class="mat-btn" [class.disabled]="isRowSelected()" (click)="delete()">{{'Sport.DeleteSettings' | translate}}</button>
+  </div>
+  <div class="grid-content">
+    <ag-grid-angular
+      id="competition-markets"
+      #agGrid
+      class="ag-theme-balham"
+      [headerHeight]="33"
+      [rowHeight]="42"
+      [suppressCopyRowsToClipboard]="true"
+      [rowData]="rowData"
+      [rowModelType]="rowModelType"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [enableBrowserTooltips]="enableBrowserTooltips"
+      [sideBar]="sideBar"
+      [animateRows]="true"
+      [components]="frameworkComponents"
+      [enableBrowserTooltips]="enableBrowserTooltips"
+      [cacheBlockSize]="cacheBlockSize"
+      (gridReady)="onGridReady($event)"
+      (cellValueChanged)="onCellValueChanged($event)"
+      [ensureDomOrder]="true"
+      [enableCellTextSelection]="true"
+      rowSelection="multiple">
+    </ag-grid-angular>
+  </div>
+</div>

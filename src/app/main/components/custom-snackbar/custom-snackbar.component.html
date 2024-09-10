@@ -1,0 +1,33 @@
+<div class="container" [class.success]="type ==='success'" [class.info]="type === 'info'">
+
+  <div class="close-btn" (click)="closeSnackBar()">
+    <mat-icon>close</mat-icon>
+  </div>
+
+  <div class="content">
+
+    @if(type === 'success') {
+      <div class="icon success">
+        <mat-icon>
+          task_alt</mat-icon>
+      </div>
+    } @else if ( type === 'error' ) {
+      <div class="icon error">
+        <mat-icon>
+          error</mat-icon>
+      </div>
+    } @else {
+      <div class="icon info">
+        <mat-icon>
+          info</mat-icon>
+      </div>
+    } 
+
+    <div class="content-inner">
+      <div class="title">{{type | titlecase}}</div>
+      <div class="description">{{description}}</div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+
+  <app-partner-date-filter 
+    [title]="'Users.Users'" 
+    [pageIdName]="pageIdName"
+    (toDateChange)="onDateChange($event)"
+    (titleClick)="onNavigateToUsers()"
+  />
+
+  <div class="grid-content">
+    <ag-grid-angular
+      #agGrid
+      class="ag-theme-balham"
+      [headerHeight]="33"
+      [rowHeight]="42"
+      [rowData]="rowData"
+      [rowModelType]="rowModelType"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [cacheBlockSize]="cacheBlockSize"
+      [paginationPageSize]="cacheBlockSize"
+      (paginationChanged)="onPaginationChanged($event)"
+      [pagination]="pagination"
+      [suppressCopyRowsToClipboard]="true"
+      [sideBar]="sideBar"
+      [animateRows]="true"
+      [components]="frameworkComponents"
+      [enableBrowserTooltips]="enableBrowserTooltips"
+      (gridReady)="onGridReady($event)"
+      [ensureDomOrder]="true"
+      [enableCellTextSelection]="true"
+      [getContextMenuItems]="getContextMenuItems"
+      rowSelection="multiple">
+    </ag-grid-angular>
+  </div>
+
+  <button mat-stroked-button class="mat-reset-btn" (click)="resetState()">{{'Common.ResetColumns' | translate}}</button>
+
+</div>

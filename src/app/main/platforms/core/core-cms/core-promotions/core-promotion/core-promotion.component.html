@@ -1,0 +1,272 @@
+<div class="container">
+
+  <div class="content-action">
+    <div class="title"><a (click)="onNavigateToPromotions()">{{'Cms.Promotions' | translate}}</a> /
+      <span>{{id}}</span>
+    </div>
+    <button mat-stroked-button class="edit-btn" (click)="isEdit = !isEdit">{{'Common.Edit' | translate}}</button>
+
+  </div>
+
+  <div class="content-edit">
+    <form class="grid-edit" [class.can-edit]="isEdit" [formGroup]="formGroup">
+      <div>
+        <div class="first-hand">{{'Common.StartDate' | translate}}</div>
+        <div class="second-hand">{{promotion?.StartDate | date:'dd/MM/yyyy'}}</div>
+        <div class="form-field form-calendar-edit">
+            <input matInput [matDatepicker]="picker" [formControlName]="'StartDate'">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <div matDatepickerToggleIcon class="icon-calendar" aria-hidden="true"></div>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Common.EndDate' | translate}}</div>
+        <div class="second-hand">{{promotion?.FinishDate | date:'dd/MM/yyyy'}}</div>
+        <div class="form-field form-calendar-edit">
+            <input matInput [matDatepicker]="picker1" [formControlName]="'FinishDate'">
+            <mat-datepicker-toggle matSuffix [for]="picker1">
+              <div matDatepickerToggleIcon class="icon-calendar" aria-hidden="true"></div>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Clients.NickName' | translate}}</div>
+        <div class="second-hand">{{promotion?.NickName}}</div>
+        <div class="form-field form-input">
+            <input matInput [placeholder]="'Clients.NickName' | translate" [formControlName]="'NickName'">
+        </div>
+      </div>
+
+      @if (childe) {
+      <div>
+        <div class="first-hand">{{'Cms.Image' | translate}}</div>
+        <div class="second-hand">{{promotion?.ImageName}}</div>
+        <div class="form-field form-input">
+            <input matInput [placeholder]="'Cms.image' | translate" [formControlName]="'ImageName'" readonly>
+        </div>
+      </div>
+    }
+
+      <div>
+        <div class="first-hand">{{'Clients.SelectType' | translate}}</div>
+        <div class="second-hand">{{ promotion?.TypeName}}</div>
+        <div class="form-field form-dropdown">
+          <mat-select [formControlName]="'Type'">
+            @for (promo of promotionTypes; track $index) {
+              <mat-option [value]="promo.Id">{{promo.Name}}</mat-option>
+            }
+          </mat-select>
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Common.SelectState' | translate}}</div>
+        <div class="second-hand">{{promotion?.StatusName}}</div>
+        <div class="form-field form-dropdown">
+          <mat-select [formControlName]="'State'">
+            @for (state of states; track $index) {
+              <mat-option [value]="state.Id">{{state.Name}}</mat-option>
+            }
+          </mat-select>
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Common.Order' | translate}}</div>
+        <div class="second-hand">{{promotion?.Order}}</div>
+        <div class="form-field form-input">
+            <input matInput [placeholder]="'Common.Order' | translate" [formControlName]="'Order'">
+        </div>
+      </div>
+
+      <div class="style-type">
+        <div class="first-hand">{{'Partners.StyleType' | translate}}</div>
+        <div class="second-hand">{{ promotion?.StyleType}}</div>
+        <div class="form-field text-area">
+
+          <textarea matInput [placeholder]="'Partners.StyleType' | translate"
+            [formControlName]="'StyleType'"></textarea>
+
+        </div>
+      </div>
+
+      @if (!childe) {
+        <div>
+          <div class="first-hand">{{'Common.DeviceType' | translate}}</div>
+          <div class="second-hand">{{promotion?.DeviceName}}</div>
+          <div class="form-field form-dropdown">
+            <mat-select [formControlName]="'DeviceType'" 
+            placeholder="{{'Common.SelectDeviceType' | translate}}"
+            >
+              <mat-option [value]="null">{{'Common.SelectDeviceType' | translate}}</mat-option>
+              @for (type of deviceTypes; track $index) {
+                <mat-option [value]="type.Id">{{type.Name}}</mat-option>
+              }
+            </mat-select>
+          </div>
+        </div>
+
+      }
+
+
+      <div>
+        <div class="first-hand">{{'Bonuses.ChooseSegment' | translate}}</div>
+        <div class="second-hand"> 
+          <span class="second-left">
+            @if (promotion?.Segments?.Type==1) {
+              {{'Bonuses.InSet' | translate}}
+            } @else if (promotion?.Segments?.Type==2) {
+              {{'Bonuses.OutOfSet' | translate}}
+            }
+          </span>
+
+          <span class="second-right">
+            @for (segment of segmentesEntites; track $index) {
+              {{segment}}, 
+            }
+          </span>
+        </div>
+
+        <div class="form-field group-field" [formGroupName]="'Segments'">
+          <div class="group-left-item">
+            <input [value]="1" [formControlName]="'Type'" type="radio">{{'Bonuses.InSet' | translate}}
+            <input [value]="2" style="margin-left: 5px;" [formControlName]="'Type'" type="radio">{{'Bonuses.OutOfSet' |
+            translate}}
+          </div>
+
+          <div class="group-right-item">
+            <mat-select [formControlName]="'Ids'" multiple>
+              @for (segment of segments; track $index) {
+                <mat-option [value]="segment.Id">{{segment.Name}}</mat-option>
+              }
+            </mat-select>
+          </div>
+        </div>
+        
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Bonuses.ChooseLanguages' | translate}}</div>
+        <div class="second-hand">
+          <span class="second-left">
+            @if (promotion?.Languages?.Type==1) {
+              {{'Bonuses.InSet' | translate}}
+            } @else if (promotion?.Languages?.Type==2) {
+              {{'Bonuses.OutOfSet' | translate}}
+            }
+          </span>
+
+          <span class="second-right">
+            @for (language of languageEntites; track $index) {
+              <ng-container>{{language}}</ng-container>
+            }
+          </span>
+        </div>
+
+        <div class="form-field group-field" [formGroupName]="'Languages'">
+          <div class="group-left-item">
+            <input [value]="1" [formControlName]="'Type'" type="radio">{{'Bonuses.InSet' | translate}}
+            <input [value]="2" style="margin-left: 5px;" [formControlName]="'Type'" type="radio">{{'Bonuses.OutOfSet' |
+            translate}}
+          </div>
+
+          <div class="group-right-item">
+            <mat-select [formControlName]="'Names'" multiple>
+              @for (language of languages; track $index) {
+                <mat-option [value]="language.Id">{{language.Name}}</mat-option>
+              }              
+            </mat-select>
+
+          </div>
+
+        </div>
+      </div>
+
+
+      @if (isEdit) {
+        <div>
+          <div class="first-hand">{{'Cms.SelectEnvironment' | translate}}</div>
+          <div class="second-hand"></div>
+          <div class="form-field form-dropdown">
+            <mat-select [formControlName]="'EnvironmentTypeId'">
+              @for (environment of environments; track $index) {
+                <mat-option [value]="environment.Id">{{environment.Name}}</mat-option>
+              }
+            </mat-select>
+          </div>
+        </div>
+
+        @if (childe) {
+          <div>
+            <div class="first-hand">{{'Common.ImageData' | translate}}</div>
+            <div class="second-hand">{{ promotion?.ImageData}}</div>
+            <div class="form-field form-checkbox">
+              <input type="file" (change)="uploadFile($event)" [formControlName]="'ImageData'">
+            </div>
+          </div>
+          
+          <div>
+            <div class="first-hand">{{'Common.ImageDataMedium' | translate}}</div>
+            <div class="second-hand">{{ promotion?.ImageDataMedium}}</div>
+            <div class="form-field form-checkbox">
+              <input type="file" (change)="uploadFile2($event)" [formControlName]="'ImageDataMedium'">
+            </div>
+          </div>
+          
+          <div>
+            <div class="first-hand">{{'Cms.ImageDataSmall' | translate}}</div>
+            <div class="second-hand">{{ promotion?.ImageDataMedium}}</div>
+            <div class="form-field form-checkbox">
+              <input type="file" (change)="uploadFile1($event)" [formControlName]="'ImageDataSmall'">
+            </div>
+          </div>
+        }
+      }
+
+      <div></div>
+      <div></div>
+
+      <div class="form-actions">
+        @if(isEdit) {
+          <div class="actions">
+            <button mat-raised-button class="mat-cancel-btn" (click)="this.isEdit = false;">{{'Cancel' |
+              translate}}</button>
+            <button mat-raised-button class="mat-btn" (click)="onSubmit()" [disabled]="formGroup.invalid"
+              type="submit">{{'Common.Save' | translate}}</button>
+          </div>
+        }
+      </div>
+    </form>
+  </div>
+
+  @if (childe) {
+   <div class="card-content">
+     <mat-card>
+       <mat-card-header>
+         <mat-card-title>{{"Cms.Image" | translate}}</mat-card-title>
+       </mat-card-header>
+         <img class="img" mat-card-image [src]="image" alt="Image">
+     </mat-card>
+   
+     <mat-card>
+       <mat-card-header>
+         <mat-card-title>{{"Cms.ImageMedum" | translate}}</mat-card-title>
+       </mat-card-header>
+         <img class="img" mat-card-image [src]="imageMedium" alt="Image">
+     </mat-card>
+   
+     <mat-card>
+       <mat-card-header>
+         <mat-card-title>{{"Cms.ImageSmall" | translate}}</mat-card-title>
+       </mat-card-header>
+         <img class="img" mat-card-image [src]="imageSmall" alt="Image">
+     </mat-card>
+   </div>
+  }
+
+</div>

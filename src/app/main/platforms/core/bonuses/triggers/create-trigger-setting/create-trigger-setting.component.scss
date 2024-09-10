@@ -1,0 +1,28 @@
+@import "mixins";
+
+.modal-wrap {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  max-height: calc(80vh - 91px);
+  min-height: 200px;
+  padding-right: 14px;
+}
+
+.mat-datepicker-input {
+  background-color: transparent !important;
+}
+
+.btn-action {
+  // margin-left: auto;
+  .mat-btn {
+    margin-top: 4px;
+    margin-right: 4px;
+    @include mat-btn-style;
+
+  }
+}
+
+.calendar-picker {
+  margin-left: 10px!important;
+}

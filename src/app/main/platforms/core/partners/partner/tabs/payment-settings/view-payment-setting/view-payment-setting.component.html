@@ -1,0 +1,274 @@
+<div class="container">
+  <div class="content-action">
+    <div class="title"> <a [routerLink]="['/main/platform/partners/all-partners']"> {{'Partners.Partners' | translate}}
+      </a> <a (click)="onRedirectToPaymentSettings()"> / {{partnerName}} :{{'Clients.PaymentSettings' | translate}} </a>
+      : {{id}}</div>
+
+    <button mat-stroked-button class="edit-btn" (click)="editPaymentSystem()">{{'Common.Edit' | translate}}</button>
+  </div>
+
+  <div class="content-edit">
+    <form class="grid-edit" [class.can-edit]="isEdit" [formGroup]="formGroup">
+      <div>
+        <div class="first-hand">{{'Common.Id' | translate}}</div>
+        <div class="static-hand">{{paymentSystem?.Id}}</div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Common.State' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.StateName}}</div>
+        <div class="form-field form-dropdown">
+          <mat-select required [formControlName]="'State'">
+            <mat-option *ngFor="let state of statusName" [value]="state.Id">{{state.Name}}</mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Partners.Partner' | translate}}</div>
+        <div class="static-hand">{{paymentSystem?.PartnerName}}</div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Partners.Commission' | translate}} %</div>
+        <div class="second-hand">{{paymentSystem?.Commission}}</div>
+        <div class="form-field form-input">
+            <input matInput type="number" required [formControlName]="'Commission'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Partners.PaymentSystem' | translate}}</div>
+        <div class="static-hand">{{paymentSystem?.PaymentSystemName}}</div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Partners.FixedFee' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.FixedFee}}</div>
+        <div class="form-field form-input">
+            <input matInput type="number" required [formControlName]="'FixedFee'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Common.Type' | translate}}</div>
+        <div class="static-hand">{{paymentSystem?.TypeName}}</div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Clients.Currency' | translate}}</div>
+        <div class="static-hand">{{paymentSystem?.CurrencyId}}</div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Partners.LastUpdate' | translate}}</div>
+        <div class="static-hand">{{paymentSystem?.LastUpdateTime | date:'dd/MM/yyyy HH:MM'}}</div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Bonuses.MinAmount' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.MinAmount}}</div>
+        <div class="form-field form-input">
+            <input matInput type="number" required [formControlName]="'MinAmount'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Bonuses.MaxAmount' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.MaxAmount}}</div>
+        <div class="form-field form-input">
+            <input matInput type="number" required [formControlName]="'MaxAmount'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Partners.ApplyPercentAmount' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.ApplyPercentAmount}}</div>
+        <div class="form-field form-input">
+            <input matInput type="number" [formControlName]="'ApplyPercentAmount'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Clients.UserName' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.UserName}}</div>
+        <div class="form-field form-input">
+            <input matInput [formControlName]="'UserName'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Clients.Password' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.Password}}</div>
+        <div class="form-field form-input">
+            <input matInput [formControlName]="'Password'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Partners.AllowMultipleClientsPerPaymentInfo' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.AllowMultipleClientsPerPaymentInfo}}</div>
+        <div class="form-field form-checkbox">
+          <mat-checkbox
+            [formControlName]="'AllowMultipleClientsPerPaymentInfo'">{{'Partners.allowMultipleClientsPerPaymentInfo' |
+            translate}}
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Partners.AllowMultiplePaymentInfoes' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.AllowMultiplePaymentInfoes}}</div>
+        <div class="form-field form-checkbox">
+          <mat-checkbox [formControlName]="'AllowMultiplePaymentInfoes'">{{'Partners.allowMultiplePaymentInfoes' |
+            translate}}</mat-checkbox>
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Bonuses.Priority' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.Priority}}</div>
+        <div class="form-field form-input">
+            <input matInput [formControlName]="'Priority'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Common.Info' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.Info}}</div>
+        <div class="form-field form-input">
+            <input matInput [formControlName]="'Info'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Partners.OpenMode' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.OpenMode}}</div>
+        <div class="form-field form-input">
+            <input matInput type="number" [formControlName]="'OpenMode'">
+        </div>
+      </div>
+
+      <div>
+        <div class="first-hand">{{'Bonuses.ChooseCountries' | translate}}</div>
+        <div class="second-hand">
+          <span class="second-left"> 
+            @if (paymentSystem?.Countries?.Type==1) {
+              {{'Bonuses.InSet' | translate}}
+            } @else if (paymentSystem?.Countries?.Type==2) {
+              {{'Bonuses.OutOfSet' | translate}}
+            }
+          </span>
+          <span class="second-right">
+            @for (country of countriesEntites; track $index) {
+              {{country}}
+            }
+          </span>
+        </div>
+
+        <div class="form-field group-field" [formGroupName]="'Countries'">
+          <div class="group-left-item">
+            <input [value]="1" [formControlName]="'Type'" type="radio">{{'Bonuses.InSet' | translate}}
+            <input [value]="2" style="margin-left: 5px;" [formControlName]="'Type'" type="radio">{{'Bonuses.OutOfSet' |
+            translate}}
+          </div>
+
+          <div class="group-right-item">
+            <mat-select [formControlName]="'Ids'" multiple>
+              @for (country of countries; track $index) {
+                <mat-option [value]="country.Id">{{country.Name}}</mat-option>
+              }
+            </mat-select>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div>
+        <div class="first-hand">{{'Common.ImageExtension' | translate}}</div>
+        <div class="second-hand">{{paymentSystem?.ImageExtension}}</div>
+        <div class="form-field form-dropdown">
+          <mat-select [formControlName]="'ImageExtension'">
+            <mat-option *ngFor="let name of extensions" [value]="name">{{name}}</mat-option>
+          </mat-select>
+         </div>
+      </div>
+      <div></div>
+
+      <div>
+
+      </div>
+
+      <div class="form-actions">
+        <div class="actions" *ngIf="isEdit">
+          <button mat-raised-button class="mat-cancel-btn" (click)="this.isEdit = false;">{{'Common.Cancel' |
+            translate}}</button>
+          <button mat-raised-button class="mat-btn" [disabled]="!formGroup.valid" (click)="submit()">{{'Common.Save' |
+            translate}}
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+
+
+  <div class="content-edit" *ngIf="!isEdit">
+    <div class="grid-edit">
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>{{'Clients.Currency' | translate}}</th>
+              <th>{{'Partners.Rate' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let currencyItem of paymentCurrencies; let i = index">
+            <tr>
+              <td>
+                <input matInput placeholder="{{'Clients.Currency' | translate}}" [(ngModel)]="currencyItem.CurrencyId"
+                  disabled>
+              </td>
+              <td>
+                <input matInput *ngIf="!isEditCurrency" type="number" placeholder="{{'Partners.Rate' | translate}}"
+                  [(ngModel)]="currencyItem.Rate" disabled>
+                <input matInput *ngIf="isEditCurrency && enableEditIndex == i" type="number"
+                  placeholder="{{'Partners.Rate' | translate}}" [(ngModel)]="currencyItem.Rate">
+              </td>
+              <mat-icon class="edit-currency-icon" (click)="editPaymentCurrency(currencyItem, i)">edit</mat-icon>
+            </tr>
+            <tr class="buttons" *ngIf="isEditCurrency === true">
+              <td></td>
+              <td>
+
+
+                <div class="actions">
+                  <ng-container *ngIf="isEditCurrency && enableEditIndex == i">
+                    <button mat-raised-button class="mat-cancel-btn"
+                      (click)="this.isEditCurrency = false;">{{'Common.Cancel' |
+                      translate}}</button>
+                    <button mat-raised-button class="mat-btn" (click)="submitCurrency(currencyItem)">{{'Common.Save' |
+                      translate}}</button>
+                  </ng-container>
+
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-actions">
+        <div class="actions" *ngIf="!isEdit">
+          <button mat-stroked-button class="mat-btn" (click)="AddCurrencyRate()">{{'Partners.AddCurrencyRate' |
+            translate}}</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

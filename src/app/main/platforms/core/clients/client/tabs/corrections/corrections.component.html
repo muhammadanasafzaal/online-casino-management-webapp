@@ -1,0 +1,64 @@
+<div class="container">
+
+  <div class="content-action">
+    <div class="title"><a [routerLink]="['../../../all-clients']">{{'Clients.Clients' | translate}}</a> / {{clientId}} :{{'Clients.Corrections' | translate}}</div>
+
+    <button mat-stroked-button class="mat-btn" (click)="debitToClient()">{{'Clients.DebitToClient' | translate}}</button>
+    <button mat-stroked-button class="mat-btn" (click)="creditFromClient()">{{'Clients.CreditFromClient' | translate}}</button>
+
+
+  </div>
+
+  <div class="grid-content">
+    <ag-grid-angular
+      id="corrections"
+      #agGrid
+      class="ag-theme-balham correction-grid"
+      [rowData]="rowData"
+      [headerHeight]="33"
+      [rowHeight]="42"
+      [suppressCopyRowsToClipboard]="true"
+      [rowModelType]="rowModelType"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [cacheBlockSize]="cacheBlockSize"
+      [components]="frameworkComponents"
+      (gridReady)="onGridReady($event)"
+      [ensureDomOrder]="true"
+      [enableCellTextSelection]="true"
+      [getContextMenuItems]="getContextMenuItems"
+      rowSelection="single">
+    </ag-grid-angular>
+  </div>
+
+  <app-partner-date-filter 
+    [title]="'Common.History'" 
+    [accounts]="{clientId: +clientId}" 
+    (toDateChange)="onDateChange($event)"
+    (accountTypeChange)="onSelectAccountType($event)"
+    (titleClick)="onNavigateToClient()"
+    />
+
+  <div class="grid-content">
+    <ag-grid-angular
+      id="corrections"
+      #agGrid
+      class="ag-theme-balham"
+      [rowData]="rowClientCorrections"
+      [headerHeight]="33"
+      [rowHeight]="42"
+      [suppressCopyRowsToClipboard]="true"
+      [rowModelType]="rowModelType"
+      [columnDefs]="columnDefs2"
+      [defaultColDef]="defaultColDef"
+      [cacheBlockSize]="cacheBlockSize"
+      [components]="frameworkComponents"
+      (gridReady)="onGridReadyCorrections($event)"
+      [ensureDomOrder]="true"
+      [enableCellTextSelection]="true"
+      [getContextMenuItems]="getContextMenuItems"
+      rowSelection="single">
+    </ag-grid-angular>
+  </div>
+
+</div>

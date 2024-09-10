@@ -1,0 +1,32 @@
+<div class="container">
+
+  <app-partner-date-filter 
+    [title]="'Users.Users'" 
+    [pageIdName]="pageIdName"
+    (toDateChange)="onDateChange($event)"
+    (titleClick)="onNavigateToUsers()"
+  />
+
+<div class="grid-content">
+  <ag-grid-angular
+    id="sessions"
+    #agGrid
+    class="ag-theme-balham"
+    [headerHeight]="33"
+    [rowHeight]="42"
+    [rowData]="rowData"
+    [suppressCopyRowsToClipboard]="true"
+    [rowModelType]="rowModelType"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [cacheBlockSize]="cacheBlockSize"
+    (gridReady)="onGridReady($event)"
+    [ensureDomOrder]="true"
+    [enableCellTextSelection]="true"
+    [getContextMenuItems]="getContextMenuItems"
+    rowSelection="single">
+  </ag-grid-angular>
+
+  </div>
+  
+</div>

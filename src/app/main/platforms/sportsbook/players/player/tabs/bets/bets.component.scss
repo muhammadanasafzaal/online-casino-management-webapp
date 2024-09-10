@@ -1,0 +1,42 @@
+@import "mixins.scss";
+@import "variables.scss";
+
+.container {
+  height:  92%!important;
+  @include container-style;
+
+  .grid-content {
+    width: 100%;
+    height: calc(100% - 62px);
+
+    ::ng-deep {
+      ag-grid-angular {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .pages-sizes {
+      position: absolute;
+      left: 265px;
+      bottom: 2.4%;
+      @include grid-dropdown-style;
+
+      ::ng-deep {
+        .mat-select {
+          height: 26px !important;
+          width: 60px !important;
+        }
+      }
+    }
+
+    .btn-action {
+      display: flex;
+      column-gap: 10px;
+
+      .mat-btn {
+        @include mat-btn-style;
+      }
+    }
+  }
+}

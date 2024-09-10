@@ -1,0 +1,54 @@
+<div class="container">
+
+  <app-partner-date-filter 
+  [title]="'Reports.ReportByMatches'" 
+  [partners]="'Sportsbook'"
+  (toDateChange)="onDateChange($event)"
+  />
+
+  <div class="grid-content">
+    <ag-grid-angular
+    id="report-by-matches"
+    #agGrid
+    [class.hide-grid]="loadingUserState"
+    class="ag-theme-balham"
+    [headerHeight]="33"
+    [rowHeight]="42"
+    [rowData]="rowData"
+    [rowModelType]="rowModelType"
+    [suppressCopyRowsToClipboard]="true"
+    [columnDefs]="columnDefs"
+    [suppressRowClickSelection]="true"
+    [defaultColDef]="defaultColDef"
+    [enableBrowserTooltips]="enableBrowserTooltips"
+    [sideBar]="sideBar"
+    [animateRows]="true"
+    [pagination]="pagination"
+    [enableBrowserTooltips]="enableBrowserTooltips"
+    [cacheBlockSize]="cacheBlockSize"
+    (gridReady)="onGridReady($event)"
+    [ensureDomOrder]="true"
+    [enableCellTextSelection]="true"
+    (columnPinned)="onColumnPinned($event)"
+    (columnMoved)="onColumnMoved($event)"
+    (columnResized)="onColumnResized($event)"
+    (columnVisible)="onColumnVisible($event)"
+    rowSelection="single">
+  </ag-grid-angular>
+    <div class="pages-sizes">
+      <mat-select
+        (selectionChange)="onPageSizeChanged()"
+        [(ngModel)]="cacheBlockSize"
+        [(value)]="defaultPageSize"
+        panelClass="overlay-dropdown small"
+        disableOptionCentering>
+        <mat-option [value]="sizes" *ngFor="let sizes of pageSizes">{{sizes}}</mat-option>
+      </mat-select>
+    </div>
+
+    <button mat-stroked-button class="mat-reset-btn" (click)="resetState()">{{'Common.ResetColumns' | translate}}</button>
+    <button mat-stroked-button class="mat-export-btn" (click)="exportToCsv()">{{'Common.ExportToCSV' | translate}}</button>
+
+  </div>
+</div>
+

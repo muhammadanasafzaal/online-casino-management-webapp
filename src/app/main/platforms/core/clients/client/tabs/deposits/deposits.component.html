@@ -1,0 +1,68 @@
+<div class="container">
+
+  <app-partner-date-filter 
+  [title]="'Clients.Clients'" 
+  [accounts]="{clientId: +clientId}" 
+  [pageIdName]="pageIdName"
+  (toDateChange)="onDateChange($event)"
+  (accountTypeChange)="onSelectAccountType($event)"
+  (titleClick)="onNavigateToClient()"
+  />
+
+  <div class="grid-content">
+    <ag-grid-angular
+      #agGrid
+      [class.hide-grid]="loadingUserState"
+      class="ag-theme-balham"
+      [headerHeight]="33"
+      [rowHeight]="42"
+      [rowData]="rowData"
+      [rowModelType]="rowModelType"
+      [sideBar]="sideBar"
+      [suppressRowClickSelection]="true"
+      [columnDefs]="columnDefs"
+      [cacheBlockSize]="cacheBlockSize"
+      [paginationPageSize]="cacheBlockSize"
+      [pagination]="pagination"
+      [animateRows]="true"
+      [suppressCopyRowsToClipboard]="true"
+      (paginationChanged)="onPaginationChanged($event)"
+      [enableBrowserTooltips]="enableBrowserTooltips"
+      [groupIncludeFooter]="true"
+      [groupIncludeTotalFooter]="true"
+      [masterDetail]="masterDetail"
+      [defaultColDef]="defaultColDef"
+      (gridReady)="onGridReady($event)"
+      (rowClicked)="onRowClicked($event)"
+      (rowGroupOpened)="onRowGroupOpened($event)"
+      [rowClassRules]="rowClassRules"
+      [ensureDomOrder]="true"
+      [enableCellTextSelection]="true"
+      [components]="frameworkComponents"
+      [getContextMenuItems]="getContextMenuItems"
+      (columnPinned)="onColumnPinned($event)"
+      (columnMoved)="onColumnMoved($event)"
+      (columnResized)="onColumnResized($event)"
+      (columnVisible)="onColumnVisible($event)"
+      rowSelection="multiple">
+    </ag-grid-angular>
+
+    <div class="footer-ag-grid">
+        <mat-select
+          (selectionChange)="onPageSizeChanged()"
+          [(ngModel)]="cacheBlockSize"
+          [(value)]="defaultPageSize"
+          panelClass="overlay-dropdown small"
+          disableOptionCentering>
+          <mat-option [value]="sizes" *ngFor="let sizes of pageSizes">{{sizes}}</mat-option>
+        </mat-select>
+      <div class="btn-action">
+        <button mat-stroked-button class="mat-btn" (click)="onCreateDeposit()">{{'Payments.CreateDeposit' | translate}}</button>
+      </div>
+    </div>
+
+    <button mat-stroked-button class="mat-reset-btns" (click)="resetState()">{{'Common.ResetColumns' | translate}}</button>
+
+  </div>
+</div>
+

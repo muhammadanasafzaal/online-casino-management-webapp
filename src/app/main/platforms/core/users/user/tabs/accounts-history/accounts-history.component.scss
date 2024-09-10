@@ -1,0 +1,49 @@
+@import "mixins.scss";
+@import "variables.scss";
+
+.container {
+  @include container-style;
+  height: 92%;
+
+
+
+  .grid-content {
+    width: 100%;
+    height: calc(100% - 86px);
+
+    ::ng-deep {
+      ag-grid-angular {
+        width: 100%;
+        height: 100%;
+
+        .Won {
+          background-color: $red;
+          border-radius: 4px;
+
+          .ag-cell-value {
+            color: $white;
+          }
+        }
+
+        .Lost {
+          background-color: $green-2;
+          border-radius: 4px;
+
+          .ag-cell-value {
+            color: $white !important;
+          }
+        }
+
+        .Deleted {
+          background-color: $orange;
+          border-radius: 4px;
+
+          .ag-cell-value {
+            color: $white;
+          }
+        }
+      }
+    }
+
+  }
+}

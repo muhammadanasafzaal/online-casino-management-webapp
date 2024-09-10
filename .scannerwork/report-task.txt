@@ -1,0 +1,6 @@
+projectKey=Online-Casino-Management-System
+serverUrl=http://localhost:9099
+serverVersion=10.6.0.92116
+dashboardUrl=http://localhost:9099/dashboard?id=Online-Casino-Management-System
+ceTaskId=95418b9f-1b39-4a3f-9381-87615b282a72
+ceTaskUrl=http://localhost:9099/api/ce/task?id=95418b9f-1b39-4a3f-9381-87615b282a72

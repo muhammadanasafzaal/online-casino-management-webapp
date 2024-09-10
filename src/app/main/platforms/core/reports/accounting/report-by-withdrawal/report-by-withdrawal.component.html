@@ -1,0 +1,31 @@
+<div class="container">
+
+
+  <app-partner-date-filter 
+    [title]="'Reports.ReportByWithdrawal'" [partners]="'CorePlatform'"
+    (toDateChange)="onDateChange($event)" 
+  />
+
+  <div class="grid-content">
+    <ag-grid-angular
+      id="sessions"
+      #agGrid
+      class="ag-theme-balham"
+      [headerHeight]="33"
+      [rowHeight]="42"
+      [rowData]="rowData"
+      [rowModelType]="rowModelType"
+      [suppressCopyRowsToClipboard]="true"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [cacheBlockSize]="cacheBlockSize"
+      (gridReady)="onGridReady($event)"
+      [ensureDomOrder]="true"
+      [enableCellTextSelection]="true"
+      (filterModified)="onFilterModified($event)"
+      [getContextMenuItems]="getContextMenuItems"
+      rowSelection="single">
+    </ag-grid-angular>
+  </div>
+</div>
+

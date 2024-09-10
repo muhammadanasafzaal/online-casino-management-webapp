@@ -1,0 +1,64 @@
+@import "mixins";
+
+.container {
+  @include container-style;
+  height: auto;
+  background-color: $content-bg-color;
+
+  .content-action {
+    @include action-style;
+    height: 68px;
+
+    .edit-btn {
+      @include mat-edit-btn-style;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  border: 1px solid #cccccc;
+  tbody, tr, td {
+    padding: 10px;
+    input {
+      border: 1px solid #cccccc;
+      padding: 5px;
+      width: 90%;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      column-gap: 6px;
+  
+      .mat-btn {
+        @include mat-btn-style;
+      }
+  
+      .mat-cancel-btn {
+        @include  mat-cancel-btn-style
+      }
+    }
+  }
+}
+
+.form-actions {
+  justify-content: flex-end;
+
+  .actions {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+
+    .mat-btn {
+      @include mat-btn-style;
+    }
+
+    .mat-cancel-btn {
+      @include  mat-cancel-btn-style
+    }
+  }
+}
+
+

@@ -1,0 +1,58 @@
+<div class="container">
+
+  <app-partner-date-filter 
+    [title]="'Reports.ReportByLogs'" 
+    (toDateChange)="onDateChange($event)" 
+  />
+
+  <div class="grid-content">
+    <ag-grid-angular
+      id="report-bets"
+      #agGrid
+      class="ag-theme-balham"
+      [class.hide-grid]="loadingUserState"
+      [headerHeight]="33"
+      [rowHeight]="42"
+      [class.load-grid]="filterUsed"
+      [rowData]="rowData"
+      [rowModelType]="rowModelType"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [cacheBlockSize]="cacheBlockSize"
+      [paginationPageSize]="cacheBlockSize"
+      (filterChanged)="onFilterChanged($event)"
+      (paginationChanged)="onPaginationChanged($event)"
+      [pagination]="pagination"
+      [sideBar]="sideBar"
+      [suppressCopyRowsToClipboard]="true"
+      [animateRows]="true"
+      [enableBrowserTooltips]="enableBrowserTooltips"
+      (gridReady)="onGridReady($event)"
+      [ensureDomOrder]="true"
+      [enableCellTextSelection]="true"
+      [components]="frameworkComponents"
+      [getContextMenuItems]="getContextMenuItems"
+      (columnPinned)="onColumnPinned($event)"
+      (columnMoved)="onColumnMoved($event)"
+      (columnResized)="onColumnResized($event)"
+      (columnVisible)="onColumnVisible($event)"
+      rowSelection="multiple">
+    </ag-grid-angular>
+
+    <div class="pages-sizes">
+      <mat-select
+        (selectionChange)="onPageSizeChanged()"
+        [(ngModel)]="cacheBlockSize"
+        [(value)]="defaultPageSize"
+        panelClass="overlay-dropdown small"
+        disableOptionCentering>
+        <mat-option [value]="sizes" *ngFor="let sizes of pageSizes">{{sizes}}</mat-option>
+      </mat-select>
+    </div>
+
+    <button mat-stroked-button class="mat-reset-btn" (click)="resetState()">{{'Common.ResetColumns' | translate}}</button>
+
+
+  </div>
+</div>
+

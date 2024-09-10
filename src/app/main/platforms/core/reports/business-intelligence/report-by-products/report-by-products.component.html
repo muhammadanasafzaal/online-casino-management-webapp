@@ -1,0 +1,41 @@
+<div class="container">
+
+
+  <app-partner-date-filter 
+    [title]="'Reports.ReportByProducts'" 
+    [partners]="'CorePlatform'"
+    (toDateChange)="onDateChange($event)" 
+  />
+
+
+  <div class="grid-content">
+    <ag-grid-angular
+      id="sessions"
+      #agGrid
+      [class.hide-grid]="loadingUserState"
+      class="ag-theme-balham"
+      [headerHeight]="33"
+      [rowHeight]="42"
+      [rowData]="rowData"
+      [rowModelType]="rowModelType"
+      [columnDefs]="columnDefs"
+      [suppressCopyRowsToClipboard]="true"
+      [defaultColDef]="defaultColDef"
+      [cacheBlockSize]="cacheBlockSize"
+      (gridReady)="onGridReady($event)"
+      [ensureDomOrder]="true"
+      [sideBar]="sideBar"
+      [enableCellTextSelection]="true"
+      [getContextMenuItems]="getContextMenuItems"
+      (columnPinned)="onColumnPinned($event)"
+      (columnMoved)="onColumnMoved($event)"
+      (columnResized)="onColumnResized($event)"
+      (columnVisible)="onColumnVisible($event)"
+      rowSelection="single">
+    </ag-grid-angular>
+  </div>
+
+  <button mat-stroked-button class="mat-reset-btn" (click)="resetState()">{{'Common.ResetColumns' | translate}}</button>
+    <button mat-stroked-button class="mat-export-btn" (click)="exportToCsv()">{{'Common.ExportToCSV' | translate}}</button>
+</div>
+
